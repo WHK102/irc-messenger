@@ -39,7 +39,7 @@ body{
     background-color: #1ca0da;
     color: #FFFFFF;
     border-radius: 7px 7px 0 0;
-    /*height: 23px;*/
+    height: 49px;
 }
 
 .header .bar{
@@ -82,11 +82,10 @@ body{
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-.header .menu > ul{
+.header .menu ul{
     margin: 0;
     list-style: none;
     padding: 0;
-    margin: 0;
     white-space: nowrap
 }
 
@@ -109,15 +108,16 @@ body{
     background-color: #ffffff;
     color: #333333;
     font-weight: normal !important;
-    border-left: 1px solid #eee;
-    border-right: 1px solid #eee;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
     top: 24px;
     left: 1px;
+    z-index: 1;
 }
 
 .header .menu > ul > li > ul > li{
     padding: 5px 20px 5px 10px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ddd;
 }
 
 .header .menu > ul > li > ul > li:hover{
@@ -128,20 +128,16 @@ body{
     display: block !important;
 }
 
-.content > div{
-    max-width: 160px;
-    margin: 0 auto;
-}
+.content{
+    padding-top: 2px;
 
-.content .icon-status{
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-image: url('../images/ui_main_offline.png');
-    height: 139px;
+    /* 100% - ((- header height) + (top padding)) */
+    height: calc(100% - 51px);
 }
 
 .content input[type="text"],
-.content input[type="password"]
+.content input[type="password"],
+.content textarea
 {
     display: block;
     border: 1px solid #bbbbbb;
@@ -150,44 +146,156 @@ body{
     width: 100%;
 }
 
-.content input[type="submit"]{
+.content input[type="button"]{
     background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
     border: 1px solid #bbb;
     border-radius: 3px;
     padding: 5px 20px;
-    font-size: 12px;
     color: #222;
-    font-family: Arial;
     user-select: auto;
 }
 
-.content input[type="submit"]:active{
+.content input[type="button"]:active{
     background: linear-gradient(to bottom, #e5e5e5 0%, #ffffff 100%);
 }
 
-.content form > div{
-    margin: 7px 0;
+.content .contacts{
+    height: calc(100% - 4px);
+    margin-top: 4px;
 }
 
-.content form > div:last-child{
-    text-align: center;
-    padding: 8px;
+.content .contacts > div{
+    display: none;
 }
 
-.content label{
+.content .contacts .loading{
     display: block;
+    text-align: center;
+    margin-top: 160px;
+    color: #666;
 }
 
-.content label[for]{
-    padding: 0 0px 3px 2px;
+.content .contacts .loading > div:first-child{
+    font-size: 15px;
+    margin: 25px 0;
 }
 
-.content input[type="checkbox"]{
+.content .contacts .list{
     position: relative;
-    top: 2px;
-    margin: 0;
+    height: 100%;
 }
 
-.content .checks{
-    margin-top: 15px;
+.content .contacts .list .controls{
+    margin: 0 7px 0px 7px;
+    height: 28px;
+    overflow: hidden;
+    position: relative;
+    top: 1px;
+}
+
+.content .contacts .list .controls button{
+    font-size: 15px;
+    color: #227296;
+    cursor: pointer;
+    border: 0 none;
+    background-color: rgba(0, 0, 0, 0.05);
+    width: 31px;
+    height: 28px;
+    padding: 5px 0;
+    margin: 0;
+    border-top: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.content .contacts .list .controls button:hover{
+    background-color: #fff;
+}
+
+.content .contacts .list .controls button:first-child{
+    border-radius: 3px 0 0 0;
+    border-left: 1px solid #bbb;
+}
+
+.content .contacts .list .controls button:last-child{
+    border-radius: 0 3px 0 0;
+}
+
+.content .contacts .list .controls button.active{
+    background-color: #fff;
+    border-bottom: 0 none;
+}
+
+.content .contacts .list > div[data-tab]{
+    display: none;
+    margin: 0 7px;
+    border: 1px solid #bbb;
+    border-radius: 0 2px 2px 2px;
+    padding: 10px 0px 5px 0px;
+
+    /* 100% - (controls height) - (groups margin) - (groups padding) - (groups border) */
+    height: calc(100% - 51px);
+}
+
+.content .contacts .list > div.groups{
+    display: block;
+    background-color: #fff;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.content .contacts .list .groups > ul{
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    white-space: nowrap
+}
+
+.content .contacts .list .groups > ul > li{
+    margin-bottom: 10px;
+}
+
+.content .contacts .list .groups > ul > li > span{
+    color: #3b86b3;
+    font-weight: 600;
+    margin-bottom: 3px;
+    display: block;
+    padding: 0 7px;
+}
+
+.content .contacts .list .groups > ul > li > span > i.fa{
+    width: 10px;
+}
+
+.content .contacts .list .groups > ul > li > ul{
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.content .contacts .list .groups > ul > li > ul > li{
+    padding: 3px 7px;
+}
+
+.content .contacts .list .groups > ul > li > ul > li:hover{
+    background-color: rgba(4, 186, 255, 0.16);
+}
+
+.content .contacts .list .groups > ul > li > ul > li:active{
+    background-color: rgba(4, 186, 255, 0.21);
+}
+
+.content .contacts .list .groups > ul > li > ul > li > i.fa{
+    font-size: 10px;
+    width: 13px;
+}
+
+.content .contacts .list .groups > ul > li > ul > li > i.connected{
+    color: #e8bf23;
+    text-shadow: 0 0 2px red;
+}
+
+.content .contacts .list .groups > ul > li > ul > li > i.disconnected{
+    color: #a9a9a9;
 }

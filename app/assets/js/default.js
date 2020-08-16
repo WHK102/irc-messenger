@@ -2,15 +2,42 @@
 var app = {
 
     // Vars
-    ui     : require('nw.gui'),
-    window : false,
+    ui       : require('nw.gui'),
+    fs       : require('fs'),
+    window   : null,
+    settings : null,
     
     exit : function(){
         this.ui.App.quit();
         process.kill();
     },
-    
+
     init : function(){
+        app.initializeWindow();
+
+        // At ready the DOM
+        $(document).ready(function(){
+            app.handleView();
+            app.loadSettings(function(){
+                app.refreshContactList();
+            });
+        });
+    },
+
+    loadSettings: function(onReady){
+        app.fs.readFile('./settings.json', function(err, data){
+            app.settings = JSON.parse(data);
+            if(typeof(onReady) == 'function'){
+                onReady();
+            }
+        });
+    },
+
+    saveSettings: function(onReady){
+
+    },
+
+    initializeWindow: function(){
 
         // Initializer of screen properties
         this.ui.Screen.Init();
@@ -24,16 +51,17 @@ var app = {
 
         // Vertical centred
         this.window.y = (this.ui.Screen.screens[0].bounds.height / 2) - (this.window.height / 2);
+    },
 
-        // Handlers
+    handleView: function(){
 
         // Window control: minimize
-        $('#header-control-min').click(function(){
+        $('[data-action="minimize"]').click(function(){
             app.window.minimize();
         });
 
         // Window control: maximize
-        $('#header-control-max').click(function(){
+        $('[data-action="maximize"]').click(function(){
             if(app.window.isMaximized){
                 app.window.unmaximize();
                 app.window.isMaximized = false;
@@ -44,42 +72,56 @@ var app = {
         });
 
         // Window control: close
-        $('#header-control-exit').click(function(){
+        $('[data-action="close"]').click(function(){
             app.window.close();
         });
 
         // Top menu (hide/display)
-        $('#header-menu > ul > li').click(function(){
-            if($(this).hasClass('header-menu-active')){
-                // Remove for all
-                $('.header-menu-active').removeClass('header-menu-active');
-            }else{
-                // Remove for all
-                $('.header-menu-active').removeClass('header-menu-active');
-
-                // Active
-                $(this).addClass('header-menu-active');
-            }
+        $('.header .menu > ul > li').click(function(){
+            $('.header .menu .active').removeClass('active');
+            
+            // Active
+            $(this).addClass('active');
+            
         });
 
-        $('#header-menu > ul > li').mouseenter(function(){
-            if($('.header-menu-active').length && (!$(this).hasClass('header-menu-active'))){
+        $('.header .menu > ul > li').mouseenter(function(){
+            if($('.header .menu .active').length && (!$(this).hasClass('.active'))){
                 $(this).click();
             }
         });
 
-        $('#content, #header-controls').click(function(){
-            $('.header-menu-active').removeClass('header-menu-active');
+        // Deactive all
+        $('.content, .header .controls').click(function(){
+            
+            // Menu
+            $('.header .menu .active').removeClass('active');
         });
 
-        $('#form-login-btn').click(function(){
-            // TODO: Disable controls ...
-            // TODO: Show loader (bottom to button)
+        // Contacts
+
+        $('.content .contacts .list .controls button[data-tab]').click(function(){
+            $('.content .contacts .list .controls button').removeClass('active');
+            $(this).addClass('active');
+
+            $('.content .contacts .list > div[data-tab]').hide();
+            $('.content .contacts .list > div[data-tab="' + $(this).attr('data-tab') + '"]').show();
         });
     },
+
+    refreshContactList: function(){
+
+        $('.contacts .list').hide();
+        $('.contacts .loading').show();
+
+        // Load contact list
+        if(Object.keys(app.settings.contacts).length === 0){
+            
+        }
+
+        $('.contacts .loading').hide();
+        $('.contacts .list').show();
+    }
 }
 
-// At ready the DOM
-$(document).ready(function(){
-    app.init();
-});
+app.init();

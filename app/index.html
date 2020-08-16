@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-    <!-- HTML5 -->
     <head>
         <title></title>
 
@@ -23,13 +22,13 @@
             <div class="header">
                 <div class="bar">
                     <div class="controls">
-                        <button id="header-control-min">
+                        <button data-action="minimize">
                             <i class="fa fa-window-minimize" aria-hidden="true"></i>
                         </button>
-                        <button id="header-control-max">
+                        <button data-action="maximize">
                             <i class="fa fa-window-maximize" aria-hidden="true"></i>
                         </button>
-                        <button id="header-control-exit">
+                        <button data-action="close">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -40,8 +39,9 @@
                         <li>
                             Opciones
                             <ul>
+                                <li>Autenticaciones</li>
                                 <li>Configuraciones</li>
-                                <li>Salir</li>
+                                <li data-action="close">Salir</li>
                             </ul>
                         </li>
                         <li>
@@ -61,27 +61,51 @@
                 </div>
             </div>
             <div class="content">
-                <div>
-                    <div class="icon-status"></div>
-                    <form action="javascript:;" method="post" autocomplete="off">
-                        <div>
-                            <label for="input-nickname">Nickname:</label>
-                            <input type="text" id="input-nickname" name="nickname" autocomplete="off" />
+                <div class="contacts">
+                    <div class="loading">
+                        <div>Obteniendo configuraci&oacute;n</div>
+                        <div><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i></div>
+                    </div>
+                    <div class="list">
+                        <div class="controls">
+                            <button class="active" data-tab="list" title="Contactos">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                            </button><button data-tab="add" title="Agregar contacto">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            </button><button title="Servidores" data-tab="servers">
+                                <i class="fa fa-comments-o" aria-hidden="true"></i>
+                            </button>
                         </div>
-                        <div>
-                            <label for="input-password">Contrase&ntilde;a:</label>
-                            <input type="password" id="input-password" name="password" autocomplete="off" />
+                        <div class="groups" data-tab="list">
+                            <ul>
+                                <li>
+                                    <span>
+                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                        Amistades (1/1)
+                                    </span>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-circle connected" aria-hidden="true"></i>
+                                            demo@server.com
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span>
+                                        <i class="fa fa-caret-right" aria-hidden="true"></i>
+                                        Otros (0/0)
+                                    </span>
+                                </li>
+                                <ul></ul>
+                            </ul>
                         </div>
-                        <div class="checks">
-                            <label>
-                                <input type="checkbox" id="remember" name="remember" />
-                                <span>Recordar contrase&ntilde;a</span>
-                            </label>
+                        <div class="add" data-tab="add">
+                            Add
                         </div>
-                        <div>
-                            <input type="submit" value="Ingresar" />
+                        <div class="servers" data-tab="servers">
+                            Servers
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
