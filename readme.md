@@ -32,8 +32,8 @@ servidor pertenece cada contacto y gestionarlos todos desde una misma app
 usando varios servidores simultaneamente.
 
 Se agregarán smiles basados en gif animados pequeños como se hacía antiguamente
-en Msn y Yahoo Messenger, utilización de colores y demás ajustandose a los
-estandares ascii y a los del protocolo irc.
+en Msn messenger y Yahoo Messenger, utilización de colores y demás ajustandose a
+los estandares ascii y a los del protocolo irc.
 
 Mi inspiración se basa en el antiguo sistema de mensajería y chat de Yahoo
 Messenger para escritorio, dado de baja el 2010, pero utilizando los servicios
@@ -43,3 +43,13 @@ desentralizados de servidores IRC.
 ## Lista de cambios
 
 **No estable**. Este proyecto aun no es funcional.
+
+
+## ¿Cómo contribuir?
+
+|MÉTODO                 |DONDE                                                                                        |
+|-----------------------|---------------------------------------------------------------------------------------------|
+|Donando                |[Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KM2KBE8F982KS) |
+|Buscando bugs          |Usando la pestaña [Issues](https://github.com/WHK102/irc-messenger/issues)                   |
+|Aportando nuevas ideas |Usando la pestaña [Issues](https://github.com/WHK102/irc-messenger/issues)                   |
+|Creando modificaciones |Haciendo un [Pull Request](https://github.com/WHK102/irc-messenger/pulls)                    |
