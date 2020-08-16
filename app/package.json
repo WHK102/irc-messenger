@@ -1,0 +1,26 @@
+{
+	"main"			: "index.html",
+	"name"			: "IRC Messenger",
+	"description"	: "IRC Messenger",
+	"version"		: "3.2",
+	"keywords"		: [ "" ],
+	"window"		: {
+		"title"			: "IRC Messenger",
+		"toolbar"		: false,
+		"frame"			: false,
+		"transparent"   : true,
+		"fullscreen"	: false,
+		"resizable"		: true,
+		"width"			: 250,
+		"height"		: 530,
+		"min_width"     : 250,
+    	"min_height"    : 530,
+		"position"		: "center"
+  },
+	"webkit"		: {
+		"plugin"		: false
+  },
+  "scripts": {
+    "start": "nw"
+  }
+}
